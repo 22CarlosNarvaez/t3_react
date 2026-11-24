@@ -11,6 +11,7 @@ import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { ROUTES } from '../../../shared/router'
 import { BRAND } from '../../../theme'
 
 const CURRENT_YEAR = new Date().getFullYear()
@@ -162,6 +163,7 @@ export default function AuthLayout({
 
           {onBack && (
             <Button
+              href={ROUTES.HOME}
               startIcon={<ArrowBackRoundedIcon />}
               onClick={onBack}
               size="small"

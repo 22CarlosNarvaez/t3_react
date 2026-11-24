@@ -4,6 +4,7 @@ import FingerprintRoundedIcon from '@mui/icons-material/FingerprintRounded'
 import LockRoundedIcon from '@mui/icons-material/LockRounded'
 import VerifiedUserRoundedIcon from '@mui/icons-material/VerifiedUserRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
+import { ROUTES } from '../../../shared/router'
 import { BRAND } from '../../../theme'
 import { SECURITY_FEATURES } from '../data/landingContent'
 
@@ -54,6 +55,7 @@ export default function SecuritySection({ onAuth }) {
             <Button
               variant="contained"
               color="secondary"
+              href={ROUTES.REGISTER}
               endIcon={<ArrowForwardRoundedIcon />}
               onClick={() => onAuth('register')}
               sx={{ color: BRAND.navy }}

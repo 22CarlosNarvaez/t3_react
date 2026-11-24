@@ -24,6 +24,7 @@ import {
   validateRecoveryReset,
 } from '../utils/validators'
 import { fieldProps } from '../utils/formProps'
+import { ROUTES } from '../../../shared/router'
 
 const STEPS = ['Correo', 'Código y contraseña', 'Listo']
 const INITIAL_REQUEST = { email: '' }
@@ -211,6 +212,7 @@ export default function RecoveryForm({ onNavigate }) {
               'Tu contraseña fue actualizada correctamente.'}
           </Alert>
           <Button
+            href={ROUTES.LOGIN}
             variant="contained"
             size="large"
             fullWidth

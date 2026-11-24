@@ -17,6 +17,7 @@ import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded'
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import SectionHeading from './SectionHeading'
 import { PRODUCTS } from '../data/landingContent'
+import { ROUTES } from '../../../shared/router'
 
 const ICONS = {
   ahorros: SavingsRoundedIcon,
@@ -84,6 +85,7 @@ export default function ProductsSection({ onAuth }) {
                   </Typography>
                   <Button
                     variant="text"
+                    href={ROUTES.REGISTER}
                     endIcon={<ArrowForwardRoundedIcon />}
                     onClick={() => onAuth('register')}
                     sx={{ p: 0, color: 'primary.main' }}

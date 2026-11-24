@@ -3,6 +3,7 @@ import AuthLayout from './components/AuthLayout'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import RecoveryForm from './components/RecoveryForm'
+import { AUTH_ROUTES, ROUTES } from '../../shared/router'
 
 const COPY = {
   login: {
@@ -25,11 +26,10 @@ const COPY = {
 function AuthFooter({ mode, onNavigate }) {
   const link = (label, target) => (
     <Link
-      component="button"
-      type="button"
+      href={AUTH_ROUTES[target] ?? ROUTES.LOGIN}
       underline="hover"
       onClick={() => onNavigate(target)}
-      sx={{ border: 0, background: 'none', p: 0, fontWeight: 700 }}
+      sx={{ fontWeight: 700 }}
     >
       {label}
     </Link>

@@ -21,6 +21,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded'
 import { NAV_ITEMS } from '../data/landingContent'
+import { ROUTES } from '../../../shared/router'
 import { BRAND } from '../../../theme'
 
 function Brand() {
@@ -99,6 +100,7 @@ export default function Header({ onAuth }) {
 
           <Stack direction="row" spacing={1.25} sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Button
+              href={ROUTES.LOGIN}
               startIcon={<LoginRoundedIcon />}
               onClick={() => goTo('login')}
               sx={{ color: 'primary.main' }}
@@ -106,6 +108,7 @@ export default function Header({ onAuth }) {
               Iniciar sesión
             </Button>
             <Button
+              href={ROUTES.REGISTER}
               variant="contained"
               startIcon={<PersonAddAltRoundedIcon />}
               onClick={() => goTo('register')}
@@ -148,11 +151,18 @@ export default function Header({ onAuth }) {
         </List>
         <Divider sx={{ my: 2 }} />
         <Stack spacing={1.5}>
-          <Button fullWidth variant="outlined" startIcon={<LoginRoundedIcon />} onClick={() => goTo('login')}>
+          <Button
+            fullWidth
+            href={ROUTES.LOGIN}
+            variant="outlined"
+            startIcon={<LoginRoundedIcon />}
+            onClick={() => goTo('login')}
+          >
             Iniciar sesión
           </Button>
           <Button
             fullWidth
+            href={ROUTES.REGISTER}
             variant="contained"
             startIcon={<PersonAddAltRoundedIcon />}
             onClick={() => goTo('register')}

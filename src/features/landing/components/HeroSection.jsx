@@ -13,6 +13,7 @@ import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded'
 import PaymentsRoundedIcon from '@mui/icons-material/PaymentsRounded'
 import SavingsRoundedIcon from '@mui/icons-material/SavingsRounded'
 import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded'
+import { ROUTES } from '../../../shared/router'
 import { BRAND } from '../../../theme'
 
 const HIGHLIGHTS = ['Sin comisiones ocultas', 'Apertura 100% digital', 'Soporte 24/7']
@@ -100,6 +101,7 @@ export default function HeroSection({ onAuth }) {
                 variant="contained"
                 size="large"
                 color="secondary"
+                href={ROUTES.REGISTER}
                 startIcon={<PersonAddAltRoundedIcon />}
                 onClick={() => onAuth('register')}
                 sx={{ color: BRAND.navy, px: 3 }}

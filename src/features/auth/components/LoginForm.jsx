@@ -19,6 +19,7 @@ import { ROLE_IDS, getRole } from '../constants/roles'
 import { authService } from '../services/authService'
 import { validateLogin } from '../utils/validators'
 import { fieldProps } from '../utils/formProps'
+import { ROUTES } from '../../../shared/router'
 
 const INITIAL_VALUES = {
   role: ROLE_IDS.CLIENTE,
@@ -92,12 +93,10 @@ export default function LoginForm({ onNavigate, onAuthenticated }) {
             label={<Typography variant="body2">Recordarme</Typography>}
           />
           <Link
-            component="button"
-            type="button"
+            href={ROUTES.RECOVERY}
             underline="hover"
             onClick={() => onNavigate('recovery')}
             variant="body2"
-            sx={{ border: 0, background: 'none', p: 0 }}
           >
             ¿Olvidaste tu contraseña?
           </Link>

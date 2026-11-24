@@ -18,6 +18,7 @@ import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded'
 import VerifiedUserRoundedIcon from '@mui/icons-material/VerifiedUserRounded'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import { getRole, ROLE_IDS } from '../auth/constants/roles'
+import { ROUTES } from '../../shared/router'
 import { BRAND } from '../../theme'
 
 const SUMMARY = {
@@ -74,6 +75,7 @@ export default function DashboardPage({ user, onLogout }) {
               <Chip label={role.label} color="secondary" variant="outlined" size="small" />
               <Avatar sx={{ bgcolor: 'primary.main', width: 38, height: 38 }}>{initials || 'AB'}</Avatar>
               <Button
+                href={ROUTES.HOME}
                 variant="outlined"
                 size="small"
                 startIcon={<LogoutRoundedIcon />}
@@ -83,6 +85,7 @@ export default function DashboardPage({ user, onLogout }) {
                 Cerrar sesión
               </Button>
               <Button
+                href={ROUTES.HOME}
                 aria-label="Cerrar sesión"
                 size="small"
                 onClick={onLogout}

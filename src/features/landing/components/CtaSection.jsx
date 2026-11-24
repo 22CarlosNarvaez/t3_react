@@ -1,6 +1,7 @@
 import { Box, Button, Container, Stack, Typography } from '@mui/material'
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
+import { ROUTES } from '../../../shared/router'
 import { BRAND } from '../../../theme'
 
 export default function CtaSection({ onAuth }) {
@@ -29,6 +30,7 @@ export default function CtaSection({ onAuth }) {
               variant="contained"
               color="secondary"
               size="large"
+              href={ROUTES.REGISTER}
               startIcon={<PersonAddAltRoundedIcon />}
               onClick={() => onAuth('register')}
               sx={{ color: BRAND.navy }}
@@ -38,6 +40,7 @@ export default function CtaSection({ onAuth }) {
             <Button
               variant="outlined"
               size="large"
+              href={ROUTES.LOGIN}
               startIcon={<LoginRoundedIcon />}
               onClick={() => onAuth('login')}
               sx={{ color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.5)' }}
