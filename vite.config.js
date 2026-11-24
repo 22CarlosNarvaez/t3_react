@@ -10,7 +10,7 @@ export default defineConfig({
       includeAssets: ['react.svg', 'vite.svg'],
       manifest: {
         id: '/',
-        name: 'Vite + React',
+        name: 'Bank',
         short_name: 'React App',
         description: 'Inicio de React con soporte PWA',
         lang: 'es',
