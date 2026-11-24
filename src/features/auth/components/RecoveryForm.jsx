@@ -62,7 +62,19 @@ export default function RecoveryForm({ onNavigate }) {
 
   return (
     <Box>
-      <Stepper activeStep={activeStep} alternativeLabel sx={{ mb: 4 }}>
+      <Stepper
+        activeStep={activeStep}
+        alternativeLabel
+        sx={{
+          mb: 4,
+          '& .MuiStepIcon-root': {
+            color: 'text.secondary',
+          },
+          '& .MuiStepIcon-root.Mui-active': {
+            color: 'primary.main',
+          },
+        }}
+      >
         {STEPS.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -133,7 +145,7 @@ export default function RecoveryForm({ onNavigate }) {
               name="code"
               label="Código de verificación"
               placeholder="000000"
-              inputProps={{ inputMode: 'numeric', maxLength: 6 }}
+              slotProps={{ htmlInput: { inputMode: 'numeric', maxLength: 6 } }}
             />
 
             <PasswordField

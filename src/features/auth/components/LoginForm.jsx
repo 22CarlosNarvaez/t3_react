@@ -12,20 +12,16 @@ import {
   Typography,
 } from '@mui/material'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
-import RoleSelector from './RoleSelector'
 import PasswordField from './PasswordField'
 import { useForm } from '../hooks/useForm'
-import { ROLE_IDS, getRole } from '../constants/roles'
 import { authService } from '../services/authService'
 import { validateLogin } from '../utils/validators'
 import { fieldProps } from '../utils/formProps'
 import { ROUTES } from '../../../shared/router'
 
 const INITIAL_VALUES = {
-  role: ROLE_IDS.CLIENTE,
   email: '',
   password: '',
-  codigo: '',
 }
 
 export default function LoginForm({ onNavigate, onAuthenticated }) {
@@ -37,19 +33,12 @@ export default function LoginForm({ onNavigate, onAuthenticated }) {
     onSuccess: (response) => onAuthenticated(response.user),
   })
 
-  const role = getRole(form.values.role)
   const isSubmitting = form.status === 'submitting'
 
   const propsOf = (name) => fieldProps(form, name, isSubmitting)
 
   return (
     <Box component="form" onSubmit={form.submit} noValidate>
-      <RoleSelector
-        value={form.values.role}
-        onChange={(next) => form.setValue('role', next)}
-        disabled={isSubmitting}
-      />
-
       <Stack spacing={2.5}>
         <TextField
           {...propsOf('email')}
@@ -66,19 +55,6 @@ export default function LoginForm({ onNavigate, onAuthenticated }) {
           label="Contraseña"
           autoComplete="current-password"
         />
-
-        {role.id === ROLE_IDS.ADMINISTRADOR && (
-          <TextField
-            {...propsOf('codigo')}
-            name="codigo"
-            label={role.documentLabel}
-            placeholder={role.documentPlaceholder}
-            helperText={
-              form.touched.codigo ? form.errors.codigo : role.documentHint
-            }
-            error={Boolean(form.touched.codigo && form.errors.codigo)}
-          />
-        )}
 
         <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <FormControlLabel

@@ -1,5 +1,5 @@
 export { default as AuthPage } from './AuthPage'
-export { ROLES, ROLE_IDS, getRole } from './constants/roles'
+export { CLIENT_ROLE } from './constants/roles'
 export {
   evaluatePassword,
   validateLogin,

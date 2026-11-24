@@ -1,4 +1,4 @@
-import { getRole } from '../constants/roles'
+import { CLIENT_ROLE } from '../constants/roles'
 
 /**
  * Servicio de autenticación simulado.
@@ -8,33 +8,31 @@ import { getRole } from '../constants/roles'
 const DEMO_CODE = '123456'
 const wait = (ms = 700) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const buildSession = (values, role) => ({
-  id: `${role.accountPrefix}-${Date.now().toString().slice(-6)}`,
+const buildSession = (values) => ({
+  id: `${CLIENT_ROLE.accountPrefix}-${Date.now().toString().slice(-6)}`,
   nombre: values.nombre?.trim() || values.email.split('@')[0],
   apellidos: values.apellidos?.trim() ?? '',
   email: values.email.trim(),
-  rol: role.id,
-  rolLabel: role.label,
+  rol: CLIENT_ROLE.id,
+  rolLabel: CLIENT_ROLE.label,
 })
 
 export const authService = {
   async login(values) {
     await wait()
-    const role = getRole(values.role)
     return {
       severity: 'success',
-      message: `Sesión iniciada correctamente como ${role.label}.`,
-      user: buildSession(values, role),
+      message: 'Sesión iniciada correctamente.',
+      user: buildSession(values),
     }
   },
 
   async register(values) {
     await wait(900)
-    const role = getRole(values.role)
     return {
       severity: 'success',
-      message: `Tu cuenta de ${role.label.toLowerCase()} fue creada correctamente.`,
-      user: buildSession(values, role),
+      message: 'Tu cuenta de cliente fue creada correctamente.',
+      user: buildSession(values),
     }
   },
 

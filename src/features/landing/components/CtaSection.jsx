@@ -15,7 +15,7 @@ export default function CtaSection({ onAuth }) {
             textAlign: 'center',
             color: '#FFFFFF',
             background: `linear-gradient(120deg, ${BRAND.navy} 0%, ${BRAND.navyLight} 100%)`,
-            border: '1px solid rgba(227, 196, 92, 0.35)',
+            border: '1px solid rgba(227, 196, 92, 0.7)',
           }}
         >
           <Typography variant="h3" component="h2" sx={{ fontSize: { xs: '2rem', md: '2.6rem' }, mb: 1.5 }}>
@@ -33,7 +33,7 @@ export default function CtaSection({ onAuth }) {
               href={ROUTES.REGISTER}
               startIcon={<PersonAddAltRoundedIcon />}
               onClick={() => onAuth('register')}
-              sx={{ color: BRAND.navy }}
+              sx={{ color: 'secondary.contrastText' }}
             >
               Crear mi cuenta
             </Button>

@@ -18,6 +18,7 @@ import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded'
 import SectionHeading from './SectionHeading'
 import { PRODUCTS } from '../data/landingContent'
 import { ROUTES } from '../../../shared/router'
+import { accentText } from '../../../theme'
 
 const ICONS = {
   ahorros: SavingsRoundedIcon,
@@ -67,7 +68,7 @@ export default function ProductsSection({ onAuth }) {
                       borderRadius: 2.5,
                       display: 'grid',
                       placeItems: 'center',
-                      backgroundColor: 'rgba(11, 31, 58, 0.06)',
+                      backgroundColor: 'action.hover',
                       color: 'primary.main',
                       mb: 2.5,
                     }}
@@ -79,7 +80,13 @@ export default function ProductsSection({ onAuth }) {
                       {product.title}
                     </Typography>
                   </Stack>
-                  <Chip label={product.tag} size="small" color="secondary" variant="outlined" sx={{ mb: 2 }} />
+                  <Chip
+                    label={product.tag}
+                    size="small"
+                    color="secondary"
+                    variant="outlined"
+                    sx={{ mb: 2, color: accentText, borderColor: accentText }}
+                  />
                   <Typography variant="body2" color="text.secondary" sx={{ mb: 3, minHeight: 60 }}>
                     {product.description}
                   </Typography>

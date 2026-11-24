@@ -13,6 +13,7 @@ import {
   ListItemText,
   Stack,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@mui/material'
 import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded'
@@ -20,9 +21,30 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded'
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded'
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded'
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded'
 import { NAV_ITEMS } from '../data/landingContent'
 import { ROUTES } from '../../../shared/router'
-import { BRAND } from '../../../theme'
+import { useThemeMode } from '../../../theme/ThemeModeProvider'
+import { accentText } from '../../../theme'
+
+function ThemeToggle({ sx }) {
+  const { mode, toggleMode } = useThemeMode()
+  const isDark = mode === 'dark'
+  const label = isDark ? 'Activar modo claro' : 'Activar modo oscuro'
+
+  return (
+    <Tooltip title={label}>
+      <IconButton
+        aria-label={label}
+        onClick={toggleMode}
+        sx={{ color: 'text.primary', ...(sx ?? {}) }}
+      >
+        {isDark ? <LightModeRoundedIcon /> : <DarkModeRoundedIcon />}
+      </IconButton>
+    </Tooltip>
+  )
+}
 
 function Brand() {
   return (
@@ -45,14 +67,14 @@ function Brand() {
           display: 'grid',
           placeItems: 'center',
           backgroundColor: 'primary.main',
-          color: BRAND.goldLight,
+          color: 'primary.contrastText',
         }}
       >
         <AccountBalanceRoundedIcon />
       </Box>
       <Box>
         <Typography variant="h6" sx={{ lineHeight: 1.05 }}>
-          Aurora <Box component="span" sx={{ color: 'secondary.dark' }}>Bank</Box>
+          Aurora <Box component="span" sx={{ color: accentText }}>Bank</Box>
         </Typography>
         <Typography variant="caption" color="text.secondary">
           Banca digital
@@ -75,21 +97,25 @@ export default function Header({ onAuth }) {
     <AppBar
       position="sticky"
       elevation={0}
+      color="inherit"
       sx={{
-        backgroundColor: 'rgba(255, 255, 255, 0.96)',
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? 'rgba(19, 37, 58, 0.96)'
+            : 'rgba(255, 255, 255, 0.96)',
         backdropFilter: 'blur(10px)',
         borderBottom: 1,
         borderColor: 'divider',
       }}
     >
       <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ minHeight: { xs: 64, md: 72 }, gap: 2 }}>
+        <Toolbar disableGutters sx={{ minHeight: { xs: 64, md: 72 }, gap: { xs: 1, md: 2 } }}>
           <Brand />
 
           <Stack
             direction="row"
             spacing={0.5}
-            sx={{ display: { xs: 'none', md: 'flex' }, ml: 'auto' }}
+            sx={{ display: { xs: 'none', lg: 'flex' }, ml: 'auto' }}
           >
             {NAV_ITEMS.map((item) => (
               <Button key={item.href} href={item.href} color="inherit" sx={{ color: 'text.primary' }}>
@@ -98,7 +124,12 @@ export default function Header({ onAuth }) {
             ))}
           </Stack>
 
-          <Stack direction="row" spacing={1.25} sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Stack
+            direction="row"
+            spacing={1.25}
+            sx={{ display: { xs: 'none', md: 'flex' }, ml: { xs: 0, lg: 'auto' } }}
+          >
+            <ThemeToggle />
             <Button
               href={ROUTES.LOGIN}
               startIcon={<LoginRoundedIcon />}
@@ -120,7 +151,11 @@ export default function Header({ onAuth }) {
           <IconButton
             aria-label="Abrir menú"
             onClick={() => setDrawerOpen(true)}
-            sx={{ display: { xs: 'inline-flex', md: 'none' }, ml: 'auto', color: 'primary.main' }}
+            sx={{
+              display: { xs: 'inline-flex', lg: 'none' },
+              ml: 'auto',
+              color: 'primary.main',
+            }}
           >
             <MenuRoundedIcon />
           </IconButton>
@@ -131,13 +166,16 @@ export default function Header({ onAuth }) {
         anchor="right"
         open={drawerOpen}
         onClose={closeDrawer}
-        PaperProps={{ sx: { width: 290, p: 2.5 } }}
+        PaperProps={{ sx: { width: 290, maxWidth: '85vw', p: 2.5 } }}
       >
-        <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between',  mb: 2 }}>
+        <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
           <Typography variant="h6">Menú</Typography>
-          <IconButton aria-label="Cerrar menú" onClick={closeDrawer} size="small">
-            <CloseRoundedIcon />
-          </IconButton>
+          <Stack direction="row" spacing={0.5}>
+            <ThemeToggle />
+            <IconButton aria-label="Cerrar menú" onClick={closeDrawer} size="small">
+              <CloseRoundedIcon />
+            </IconButton>
+          </Stack>
         </Stack>
         <Divider sx={{ mb: 1 }} />
         <List>

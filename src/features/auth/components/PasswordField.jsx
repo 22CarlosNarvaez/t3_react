@@ -54,19 +54,22 @@ export default function PasswordField({
         disabled={disabled}
         autoComplete={autoComplete}
         fullWidth
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-                onClick={() => setVisible((current) => !current)}
-                edge="end"
-                disabled={disabled}
-              >
-                {visible ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}
-              </IconButton>
-            </InputAdornment>
-          ),
+        slotProps={{
+          htmlInput: inputProps,
+          input: {
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label={visible ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                  onClick={() => setVisible((current) => !current)}
+                  edge="end"
+                  disabled={disabled}
+                >
+                  {visible ? <VisibilityOffOutlinedIcon /> : <VisibilityOutlinedIcon />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          },
         }}
       />
 

@@ -58,7 +58,7 @@ export default function SecuritySection({ onAuth }) {
               href={ROUTES.REGISTER}
               endIcon={<ArrowForwardRoundedIcon />}
               onClick={() => onAuth('register')}
-              sx={{ color: BRAND.navy }}
+              sx={{ color: 'secondary.contrastText' }}
             >
               Abrir una cuenta segura
             </Button>
@@ -81,7 +81,7 @@ export default function SecuritySection({ onAuth }) {
                     p: 3,
                     borderRadius: 3,
                     backgroundColor: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.12)',
+                    border: '1px solid rgba(255,255,255,0.28)',
                   }}
                 >
                   <Box
@@ -98,7 +98,7 @@ export default function SecuritySection({ onAuth }) {
                   >
                     <Icon />
                   </Box>
-                  <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
+                  <Typography variant="subtitle2" sx={{ color: 'rgba(255,255,255,0.92)', fontWeight: 700 }}>
                     {feature.title}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.65)' }}>

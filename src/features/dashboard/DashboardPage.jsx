@@ -14,44 +14,32 @@ import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded'
 import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded'
 import PaymentsRoundedIcon from '@mui/icons-material/PaymentsRounded'
-import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded'
-import VerifiedUserRoundedIcon from '@mui/icons-material/VerifiedUserRounded'
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
-import { getRole, ROLE_IDS } from '../auth/constants/roles'
+import { CLIENT_ROLE } from '../auth/constants/roles'
 import { ROUTES } from '../../shared/router'
-import { BRAND } from '../../theme'
 
-const SUMMARY = {
-  [ROLE_IDS.CLIENTE]: [
-    { label: 'Saldo disponible', value: '$ 12,480.50', icon: AccountBalanceRoundedIcon },
-    { label: 'Ahorro del mes', value: '$ 1,250.00', icon: TrendingUpRoundedIcon },
-    { label: 'Transferencias', value: '18', icon: PaymentsRoundedIcon },
-  ],
-  [ROLE_IDS.ADMINISTRADOR]: [
-    { label: 'Clientes activos', value: '250,418', icon: GroupsRoundedIcon },
-    { label: 'Operaciones hoy', value: '8,932', icon: PaymentsRoundedIcon },
-    { label: 'Alertas revisadas', value: '27', icon: VerifiedUserRoundedIcon },
-  ],
-}
+const SUMMARY = [
+  { label: 'Saldo disponible', value: '$ 12,480.50', icon: AccountBalanceRoundedIcon },
+  { label: 'Ahorro del mes', value: '$ 1,250.00', icon: TrendingUpRoundedIcon },
+  { label: 'Transferencias', value: '18', icon: PaymentsRoundedIcon },
+]
 
-const ACTIONS = {
-  [ROLE_IDS.CLIENTE]: ['Transferir dinero', 'Pagar servicios', 'Ver mis tarjetas', 'Solicitar préstamo'],
-  [ROLE_IDS.ADMINISTRADOR]: ['Gestionar clientes', 'Revisar operaciones', 'Validar identidades', 'Generar reportes'],
-}
+const ACTIONS = ['Transferir dinero', 'Pagar servicios', 'Ver mis tarjetas', 'Solicitar préstamo']
 
-/** Vista posterior al login; el contenido cambia según el rol validado. */
+/** Panel del cliente: única sesión soportada por la aplicación. */
 export default function DashboardPage({ user, onLogout }) {
   if (!user) return null
 
-  const role = getRole(user.rol)
-  const isAdmin = role.id === ROLE_IDS.ADMINISTRADOR
-  const summary = SUMMARY[role.id]
-  const actions = ACTIONS[role.id]
   const initials = `${user.nombre?.[0] ?? ''}${user.apellidos?.[0] ?? ''}`.toUpperCase()
 
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
-      <AppBar position="static" elevation={0} sx={{ backgroundColor: '#FFFFFF', borderBottom: 1, borderColor: 'divider' }}>
+      <AppBar
+        position="static"
+        elevation={0}
+        color="inherit"
+        sx={{ backgroundColor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}
+      >
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Stack direction="row" spacing={1.25} sx={{ alignItems: 'center' }}>
@@ -63,7 +51,7 @@ export default function DashboardPage({ user, onLogout }) {
                   display: 'grid',
                   placeItems: 'center',
                   backgroundColor: 'primary.main',
-                  color: BRAND.goldLight,
+                  color: 'primary.contrastText',
                 }}
               >
                 <AccountBalanceRoundedIcon />
@@ -72,7 +60,7 @@ export default function DashboardPage({ user, onLogout }) {
             </Stack>
             <Box sx={{ flexGrow: 1 }} />
             <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
-              <Chip label={role.label} color="secondary" variant="outlined" size="small" />
+              <Chip label={CLIENT_ROLE.label} color="secondary" variant="outlined" size="small" />
               <Avatar sx={{ bgcolor: 'primary.main', width: 38, height: 38 }}>{initials || 'AB'}</Avatar>
               <Button
                 href={ROUTES.HOME}
@@ -101,12 +89,10 @@ export default function DashboardPage({ user, onLogout }) {
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
         <Box sx={{ mb: 5 }}>
           <Typography variant="h4" component="h1" sx={{ mb: 1 }}>
-            {role.greeting}, {user.nombre}
+            {CLIENT_ROLE.greeting}, {user.nombre}
           </Typography>
           <Typography color="text.secondary">
-            {isAdmin
-              ? 'Aquí tienes el resumen de la operación de la entidad.'
-              : 'Este es el resumen de tus productos y movimientos.'}
+            Este es el resumen de tus productos y movimientos.
           </Typography>
         </Box>
 
@@ -118,7 +104,7 @@ export default function DashboardPage({ user, onLogout }) {
             mb: 4,
           }}
         >
-          {summary.map(({ label, value, icon: Icon }) => (
+          {SUMMARY.map(({ label, value, icon: Icon }) => (
             <Paper
               key={label}
               elevation={0}
@@ -136,7 +122,7 @@ export default function DashboardPage({ user, onLogout }) {
                     borderRadius: 2,
                     display: 'grid',
                     placeItems: 'center',
-                    backgroundColor: 'rgba(11, 31, 58, 0.06)',
+                    backgroundColor: 'action.hover',
                     color: 'primary.main',
                   }}
                 >
@@ -149,7 +135,7 @@ export default function DashboardPage({ user, onLogout }) {
 
         <Paper elevation={0} sx={{ p: { xs: 2, md: 3 }, borderRadius: 4, border: '1px solid', borderColor: 'divider' }}>
           <Typography variant="h6" sx={{ mb: 2 }}>
-            {isAdmin ? 'Accesos de administración' : 'Accesos rápidos'}
+            Accesos rápidos
           </Typography>
           <Stack
             sx={{
@@ -158,7 +144,7 @@ export default function DashboardPage({ user, onLogout }) {
               gap: 1.5,
             }}
           >
-            {actions.map((action) => (
+            {ACTIONS.map((action) => (
               <Box
                 key={action}
                 sx={{

@@ -1,4 +1,5 @@
 import { Box, Chip, Typography } from '@mui/material'
+import { accentText } from '../../../theme'
 
 /** Encabezado reutilizable para las secciones de contenido. */
 export default function SectionHeading({ eyebrow, title, description, align = 'center' }) {
@@ -11,7 +12,7 @@ export default function SectionHeading({ eyebrow, title, description, align = 'c
         color="secondary"
         variant="outlined"
         size="small"
-        sx={{ mb: 2, bgcolor: 'rgba(201, 162, 39, 0.1)' }}
+        sx={{ mb: 2, bgcolor: 'rgba(201, 162, 39, 0.1)', color: accentText, borderColor: accentText }}
       />
       <Typography
         variant="h3"

@@ -1,4 +1,4 @@
-import { getRole, ROLE_IDS } from '../constants/roles'
+import { CLIENT_ROLE } from '../constants/roles'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const PHONE_PATTERN = /^\+?\d{9,15}$/
@@ -48,7 +48,6 @@ const addConfirmationErrors = (errors, password, confirmation) => {
 
 export function validateLogin(values) {
   const errors = {}
-  const role = getRole(values.role)
 
   if (!isValidEmail(values.email)) {
     errors.email = 'Ingresa un correo electrónico válido.'
@@ -56,28 +55,20 @@ export function validateLogin(values) {
   if (isBlank(values.password)) {
     errors.password = 'Ingresa tu contraseña.'
   }
-  if (role.id === ROLE_IDS.ADMINISTRADOR) {
-    if (isBlank(values.codigo)) {
-      errors.codigo = 'El personal interno debe ingresar su código de empleado.'
-    } else if (!role.documentPattern.test(values.codigo.trim())) {
-      errors.codigo = role.documentHint
-    }
-  }
 
   return { errors, isValid: Object.keys(errors).length === 0 }
 }
 
 export function validateRegister(values) {
   const errors = {}
-  const role = getRole(values.role)
 
   if (isBlank(values.nombre)) errors.nombre = 'Ingresa tu nombre.'
   if (isBlank(values.apellidos)) errors.apellidos = 'Ingresa tus apellidos.'
 
   if (isBlank(values.documento)) {
-    errors.documento = `Ingresa tu ${role.documentLabel.toLowerCase()}.`
-  } else if (!role.documentPattern.test(values.documento.trim())) {
-    errors.documento = role.documentHint
+    errors.documento = `Ingresa tu ${CLIENT_ROLE.documentLabel.toLowerCase()}.`
+  } else if (!CLIENT_ROLE.documentPattern.test(values.documento.trim())) {
+    errors.documento = CLIENT_ROLE.documentHint
   }
 
   if (!isValidEmail(values.email)) {

@@ -60,7 +60,7 @@ export default function Footer() {
           ))}
         </Box>
 
-        <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.12)' }} />
+        <Divider sx={{ my: 4, borderColor: 'rgba(255,255,255,0.28)' }} />
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
          

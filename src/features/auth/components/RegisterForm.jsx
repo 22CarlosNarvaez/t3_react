@@ -11,16 +11,14 @@ import {
   Typography,
 } from '@mui/material'
 import PersonAddAltRoundedIcon from '@mui/icons-material/PersonAddAltRounded'
-import RoleSelector from './RoleSelector'
 import PasswordField from './PasswordField'
 import { useForm } from '../hooks/useForm'
-import { ROLE_IDS, getRole } from '../constants/roles'
+import { CLIENT_ROLE } from '../constants/roles'
 import { authService } from '../services/authService'
 import { validateRegister } from '../utils/validators'
 import { fieldProps } from '../utils/formProps'
 
 const INITIAL_VALUES = {
-  role: ROLE_IDS.CLIENTE,
   nombre: '',
   apellidos: '',
   documento: '',
@@ -39,7 +37,6 @@ export default function RegisterForm({ onAuthenticated }) {
     onSuccess: (response) => onAuthenticated(response.user),
   })
 
-  const role = getRole(form.values.role)
   const isSubmitting = form.status === 'submitting'
 
   const propsOf = (name) => fieldProps(form, name, isSubmitting)
@@ -47,15 +44,6 @@ export default function RegisterForm({ onAuthenticated }) {
 
   return (
     <Box component="form" onSubmit={form.submit} noValidate>
-      <RoleSelector
-        value={form.values.role}
-        onChange={(next) => {
-          form.setValue('role', next)
-          form.setValue('documento', '')
-        }}
-        disabled={isSubmitting}
-      />
-
       <Stack spacing={2.5}>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2.5}>
           <TextField {...propsOf('nombre')} name="nombre" label="Nombre" autoComplete="given-name" />
@@ -70,10 +58,10 @@ export default function RegisterForm({ onAuthenticated }) {
         <TextField
           {...documentProps}
           name="documento"
-          label={role.documentLabel}
-          placeholder={role.documentPlaceholder}
+          label={CLIENT_ROLE.documentLabel}
+          placeholder={CLIENT_ROLE.documentPlaceholder}
           helperText={
-            form.touched.documento ? form.errors.documento : role.documentHint
+            form.touched.documento ? form.errors.documento : CLIENT_ROLE.documentHint
           }
           error={Boolean(form.touched.documento && form.errors.documento)}
         />

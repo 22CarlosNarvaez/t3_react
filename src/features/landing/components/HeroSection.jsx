@@ -44,7 +44,7 @@ export default function HeroSection({ onAuth }) {
           width: 420,
           height: 420,
           borderRadius: '50%',
-          border: '1px solid rgba(255,255,255,0.08)',
+          border: '1px solid rgba(255,255,255,0.2)',
           top: -180,
           right: -100,
         }}
@@ -65,7 +65,7 @@ export default function HeroSection({ onAuth }) {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', md: '1.05fr 0.95fr' },
+            gridTemplateColumns: { xs: '1fr', lg: '1.05fr 0.95fr' },
             gap: { xs: 6, md: 8 },
             alignItems: 'center',
           }}
@@ -104,7 +104,7 @@ export default function HeroSection({ onAuth }) {
                 href={ROUTES.REGISTER}
                 startIcon={<PersonAddAltRoundedIcon />}
                 onClick={() => onAuth('register')}
-                sx={{ color: BRAND.navy, px: 3 }}
+                sx={{ color: 'secondary.contrastText', px: 3 }}
               >
                 Abrir mi cuenta
               </Button>
@@ -204,7 +204,7 @@ export default function HeroSection({ onAuth }) {
                       p: 1.5,
                       borderRadius: 2,
                       textAlign: 'center',
-                      backgroundColor: BRAND.surface,
+                      backgroundColor: 'action.hover',
                     }}
                   >
                     <Icon sx={{ color: 'primary.main', fontSize: 22 }} />

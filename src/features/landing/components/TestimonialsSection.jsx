@@ -32,7 +32,7 @@ export default function TestimonialsSection() {
                 “{testimonial.quote}”
               </Typography>
               <Stack direction="row" spacing={1.5} sx={{ alignItems: 'center' }}>
-                <Avatar sx={{ bgcolor: 'primary.main', color: 'secondary.light' }}>
+                <Avatar sx={{ bgcolor: 'primary.main', color: 'primary.contrastText' }}>
                   {testimonial.initials}
                 </Avatar>
                 <Box>

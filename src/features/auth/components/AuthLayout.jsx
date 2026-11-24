@@ -35,13 +35,13 @@ export default function AuthLayout({
       sx={{
         minHeight: '100vh',
         display: 'grid',
-        gridTemplateColumns: { xs: '1fr', md: 'minmax(320px, 42%) 1fr' },
+        gridTemplateColumns: { xs: '1fr', lg: 'minmax(320px, 42%) 1fr' },
         backgroundColor: 'background.default',
       }}
     >
       <Box
         sx={{
-          display: { xs: 'none', md: 'flex' },
+          display: { xs: 'none', lg: 'flex' },
           flexDirection: 'column',
           justifyContent: 'space-between',
           position: 'relative',
@@ -57,7 +57,7 @@ export default function AuthLayout({
             width: 340,
             height: 340,
             borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.12)',
+            border: '1px solid rgba(255,255,255,0.28)',
             top: -120,
             right: -120,
           }}
@@ -144,7 +144,7 @@ export default function AuthLayout({
         }}
       >
         <Container maxWidth="sm" disableGutters>
-          <Stack direction="row" spacing={1} sx={{ alignItems: 'center',  mb: 3, display: { md: 'none' } }}>
+          <Stack direction="row" spacing={1} sx={{ alignItems: 'center',  mb: 3, display: { lg: 'none' } }}>
             <Box
               sx={{
                 width: 38,

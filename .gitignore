@@ -7,18 +7,36 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencias y build
 node_modules
 dist
 dist-ssr
+dev-dist/
 *.local
 
-# Editor directories and files
+# Vercel
+.vercel
+
+# Variables de entorno (nunca subir secretos)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Pruebas y cobertura
+coverage/
+
+# Editor e IDE
 .vscode/*
 !.vscode/extensions.json
 .idea
+*.sw?
+
+# Sistema operativo
 .DS_Store
+Thumbs.db
+Desktop.ini
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
